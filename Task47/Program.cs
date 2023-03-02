@@ -12,7 +12,7 @@ double[,] GetArray(int m, int n)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = new Random().NextDouble() *10;
+            result[i, j] = Math.Round(new Random().NextDouble() *10, 2);
         }
     }
     return result;
