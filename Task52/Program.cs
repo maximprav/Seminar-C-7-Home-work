@@ -12,12 +12,14 @@ int rows = int.Parse(Console.ReadLine()!)!;
 Console.WriteLine("Введите количество столбцов массива:");
 int columns = int.Parse(Console.ReadLine()!)!;
 
-int[,] array = GetArray(rows, columns, -10, 10);
+double[,] array = GetArray(rows, columns, 1, 10);
 PrintArray(array);
+Console.WriteLine("Среднее арифметическое каждого столбца:");
+GetAverage(array);
 
-int[,] GetArray(int m, int n, int minValue, int maxValue)
+double[,] GetArray(int m, int n, int minValue, int maxValue)
 {
-    int[,] result = new int[m, n];
+    double[,] result = new double[m, n];
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
@@ -28,7 +30,7 @@ int[,] GetArray(int m, int n, int minValue, int maxValue)
     return result;
 }
 
-void PrintArray(int[,] inArray)
+void PrintArray(double[,] inArray)
 {
     for (int i = 0; i < inArray.GetLength(0); i++)
     {
@@ -37,5 +39,19 @@ void PrintArray(int[,] inArray)
             Console.Write($"{inArray[i, j]} ");
         }
         Console.WriteLine();
+    }
+}
+
+void GetAverage(double[,] inArray)
+{
+    for (int j = 0; j < inArray.GetLength(1); j++)
+    {
+        double average = 0;
+        for (int i = 0; i < inArray.GetLength(0); i++)
+        {
+            average = average + inArray[i, j];
+        }
+        average = average / inArray.GetLength(0);
+        Console.Write(Math.Round(average, 2) + " ");
     }
 }
